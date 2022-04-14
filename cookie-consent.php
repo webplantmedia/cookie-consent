@@ -125,6 +125,80 @@ function cookie_consent_customizer_register($wp_customize)
 			'settings'    => 'cookie_consent_' . $id_,
 		)
 	);
+
+	$id = "position";
+	$id_ = str_replace("-", "_", $id);
+	$wp_customize->add_setting(
+		'cookie_consent_' . $id_,
+		array(
+			'default'           => "bottom left",
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'option',
+		)
+	);
+
+	$wp_customize->add_control(
+		'cookie_consent_' . $id_,
+		array(
+			'label'       => __('Position', 'cookie-consent'),
+			'section'     => $section_id,
+			'type'        => 'select',
+			'choices' => array(
+				'bottom left' => 'bottom left',
+				'bottom center' => 'bottom center',
+				'bottom right' => 'bottom right',
+			),
+			'settings'    => 'cookie_consent_' . $id_,
+		)
+	);
+
+	$id = "layout";
+	$id_ = str_replace("-", "_", $id);
+	$wp_customize->add_setting(
+		'cookie_consent_' . $id_,
+		array(
+			'default'           => "box",
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'option',
+		)
+	);
+
+	$wp_customize->add_control(
+		'cookie_consent_' . $id_,
+		array(
+			'label'       => __('Layout', 'cookie-consent'),
+			'section'     => $section_id,
+			'type'        => 'select',
+			'choices' => array(
+				'box' => 'Box',
+				'bar' => 'Bar',
+				'cloud' => 'Cloud',
+			),
+			'settings'    => 'cookie_consent_' . $id_,
+		)
+	);
+
+
+	$id = "force_consent";
+	$id_ = str_replace("-", "_", $id);
+	$wp_customize->add_setting(
+		'cookie_consent_' . $id_,
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+			'type' => 'option',
+		)
+	);
+
+	$wp_customize->add_control(
+		'cookie_consent_' . $id_,
+		array(
+			'label'       => __('Force Consent', 'cookie-consent'),
+			'section'     => $section_id,
+			'type'        => 'checkbox',
+			'settings'    => 'cookie_consent_' . $id_,
+		)
+	);
 }
 
 add_action('wp_enqueue_scripts', 'cookie_consent_enqueue_scripts_styles', 9);
@@ -140,6 +214,9 @@ function cookie_consent_enqueue_scripts_styles()
 	$message = get_option('cookie_consent_message', "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.");
 	$title = get_option('cookie_consent_title', "We use cookies!");
 	$agree_button = get_option('cookie_consent_agree_button', "Ok");
+	$position = get_option('cookie_consent_position', "bottom left");
+	$layout = get_option('cookie_consent_layout', "box");
+	$force_consent = get_option('cookie_consent_force_consent', 0);
 
 	if ($enable) {
 		wp_enqueue_style('cookieconsent', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.css', array(), '2.8.0');
@@ -152,6 +229,9 @@ function cookie_consent_enqueue_scripts_styles()
 				'message' => $message,
 				'title' => $title,
 				'agree_button' => $agree_button,
+				'position' => $position,
+				'layout' => $layout,
+				'force_consent' => $force_consent,
 			)
 		);
 	}

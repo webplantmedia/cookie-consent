@@ -11,7 +11,7 @@ cc.run({
   // delay: 0,                               // default: 0
   // auto_language: null                     // default: null; could also be 'browser' or 'document'
   // autorun: true,                          // default: true
-  force_consent: false,
+  force_consent: Boolean(cookieconsent.force_consent),
   // hide_from_bots: false,                  // default: false
   // remove_cookie_tables: false             // default: false
   // cookie_name: 'cc_cookie',               // default: 'cc_cookie'
@@ -40,8 +40,8 @@ cc.run({
   },
   gui_options: {
     consent_modal: {
-      layout: "box", // box/cloud/bar
-      position: "bottom left", // bottom/middle/top + left/right/center
+      layout: cookieconsent.layout, // box/cloud/bar
+      position: cookieconsent.position, // bottom/middle/top + left/right/center
       transition: "slide", // zoom/slide
       swap_buttons: false, // enable to invert buttons
     },
