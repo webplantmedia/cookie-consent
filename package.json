@@ -1,0 +1,12 @@
+{
+  "name": "cookie-consent",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webplantmedia/cookie-consent/"
+  },
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "watch": "sass --watch sass:css css:css --style compressed",
+    "start": "npm run watch"
+  }
+}
