@@ -221,7 +221,7 @@ function cookie_consent_enqueue_scripts_styles()
 	if ($enable) {
 		wp_enqueue_style('cookieconsent', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.css', array(), '2.8.0');
 		wp_enqueue_script('cookieconsent', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js', array(), '2.8.0', true);
-		wp_enqueue_script('cookieconsent-init', COOKIE_CONSENT_URL . 'js/cookieconsent-init.js', array('cookieconsent'), CHILD_THEME_VERSION, true);
+		wp_enqueue_script('cookieconsent-init', COOKIE_CONSENT_URL . 'js/cookieconsent-init.js', array('cookieconsent'), '1.0.1', true);
 		wp_localize_script(
 			'cookieconsent-init',
 			'cookieconsent',
