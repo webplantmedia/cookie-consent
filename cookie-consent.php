@@ -8,7 +8,7 @@
  * Requires PHP:      5.6
  * Author:            Web Plant Media
  * Author URI:        https://webplant.media
- * Version:           1.0.3
+ * Version:           1.0.4
  * Text Domain:       cookie-consent
  * Domain Path:       languages
  */
