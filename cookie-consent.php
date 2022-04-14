@@ -105,7 +105,7 @@ function cookie_consent_customizer_register($wp_customize)
 		)
 	);
 
-	$id = "Agree Button";
+	$id = "agree_button";
 	$id_ = str_replace("-", "_", $id);
 	$wp_customize->add_setting(
 		'cookie_consent_' . $id_,
@@ -136,18 +136,22 @@ add_action('wp_enqueue_scripts', 'cookie_consent_enqueue_scripts_styles', 9);
 function cookie_consent_enqueue_scripts_styles()
 {
 
-	$enable = get_option('cookie_consent_enable', 0);
+	$enable = get_option('cookie_consent_enable', 1);
+	$message = get_option('cookie_consent_message', "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.");
+	$title = get_option('cookie_consent_title', "We use cookies!");
+	$agree_button = get_option('cookie_consent_agree_button', "Ok");
+
 	if ($enable) {
 		wp_enqueue_style('cookieconsent', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.css', array(), '2.8.0');
-		wp_enqueue_script('cookieconsent-js', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js', array(), '2.8.0', true);
-		wp_enqueue_script('cookieconsent-init-js', COOKIE_CONSENT_URL . 'js/cookieconsent-init.js', array('cookieconsent-js'), CHILD_THEME_VERSION, true);
+		wp_enqueue_script('cookieconsent', 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js', array(), '2.8.0', true);
+		wp_enqueue_script('cookieconsent-init', COOKIE_CONSENT_URL . 'js/cookieconsent-init.js', array('cookieconsent'), CHILD_THEME_VERSION, true);
 		wp_localize_script(
-			'frontend-ajax',
-			'frontend_ajax_object',
+			'cookieconsent-init',
+			'cookieconsent',
 			array(
-				'ajaxurl' => admin_url('admin-ajax.php'),
-				'data_var_1' => 'value 1',
-				'data_var_2' => 'value 2',
+				'message' => $message,
+				'title' => $title,
+				'agree_button' => $agree_button,
 			)
 		);
 	}

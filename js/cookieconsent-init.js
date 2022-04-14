@@ -26,11 +26,10 @@ cc.run({
   languages: {
     en: {
       consent_modal: {
-        title: "We use cookies!",
-        description:
-          "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.",
+        title: cookieconsent.title,
+        description: cookieconsent.message,
         primary_btn: {
-          text: "Ok",
+          text: cookieconsent.agree_button,
           role: "accept_all", // 'accept_selected' or 'accept_all'
         },
       },
