@@ -1,5 +1,5 @@
 #cc--main {
-  --cc-bg: #fff;
+  --cc-bg: var(--wp--custom--bodybackground-color);
   --cc-text: var(--wp--custom--defaulttext-color);
   --cc-btn-primary-bg: var(--wp--custom--primary-color);
   --cc-btn-primary-text: var(--wp--custom--primary-color-contrast);
@@ -23,6 +23,10 @@
 }
 #c-p-bn::after {
   display: none;
+}
+
+#c-ttl {
+  color: var(--wp--custom--heading-color);
 }
 
 $colors: primary, secondary, third, fourth, fifth, sixth, seventh, eighth,

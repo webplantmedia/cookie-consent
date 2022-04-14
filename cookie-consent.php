@@ -233,6 +233,8 @@ function cookie_consent_customizer_register($wp_customize)
 				'fourth-color'    => 'Fourth Color',
 				'fifth-color'     => 'Fifth Color',
 				'sixth-color'     => 'Sixth Color',
+				'seventh-color'     => 'Seventh Color',
+				'eight-color'     => 'Eigth Color',
 				'defaulttext-color' => 'Default Text Color',
 				'darktext-color' => 'Dark Text Color',
 				'heading-color' => 'Heading Color',
